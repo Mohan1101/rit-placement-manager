@@ -17,7 +17,7 @@ const Feedback = () => {
 
   const fetchRegisteredCompanies = async (rollnumber) => {
     try {
-      const response = await axios.get('https://placementportal.vercel.app/students');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/students');
       const students = response.data;
       const studentData = students.find((student) => student.rollnumber === rollnumber);
 
@@ -39,7 +39,7 @@ const Feedback = () => {
     try {
       const feedbackPromises = registeredCompanies.map(async (companyname) => {
         // Fetch details from the Events collection based on companyname
-        const respone = await axios.get('https://placementportal.vercel.app/events');
+        const respone = await axios.get('https://rit-placement-manager.vercel.app/events');
      
         const eventData = respone.data.find((event) => event.companyname === companyname);
 

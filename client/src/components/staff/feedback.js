@@ -17,7 +17,7 @@ function Feedback() {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('https://placementportal.vercel.app/events');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/events');
       const eventData = response.data;
       setEvents(eventData);
     } catch (error) {

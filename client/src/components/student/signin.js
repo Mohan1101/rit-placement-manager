@@ -55,7 +55,7 @@ function SignIn() {
 
     const getStudentData = async (email) => {
         // Check if email exists in the /students route in the email field
-        const response = await axios.get('https://placementportal.vercel.app/students');
+        const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const studentData = response.data.find((student) => student.email === email);
      
         return studentData;

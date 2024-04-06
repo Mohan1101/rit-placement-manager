@@ -10,7 +10,7 @@ const Higherstudies = () => {
     // Function to fetch data from Firestore
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://placementportal.vercel.app/students');
+        const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const students = response.data;
 
         // get students with higherstudies field equal to 'Yes'

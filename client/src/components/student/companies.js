@@ -14,7 +14,7 @@ function Companies() {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('https://placementportal.vercel.app/events');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/events');
       setEvents(response.data);
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -27,7 +27,7 @@ function Companies() {
         console.log('Rollnumber:', rollnumber);
         console.log('Company:', companyName);
 
-        const response = await axios.post('https://placementportal.vercel.app/apply', {
+        const response = await axios.post('https://rit-placement-manager.vercel.app/apply', {
             rollnumber: rollnumber,
             companyName: companyName,
         });

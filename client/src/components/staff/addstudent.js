@@ -51,7 +51,7 @@ function AddStudent() {
                 }
 
                 // Send a POST request to your server with the studentData
-                await axios.post('https://placementportal.vercel.app/students/add', studentData);
+                await axios.post('https://rit-placement-manager.vercel.app/students/add', studentData);
                 
                 alert('Student added successfully!');
                 navigate('/staff/students');

@@ -12,7 +12,7 @@ const Eligible = () => {
     // Fetch eligible students from Firestore
     const fetchEligibleStudents = async () => {
       try {
-        const response = await axios.get('https://placementportal.vercel.app/students');
+        const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const students = response.data;
           // Convert arrearCount and cgpa to numbers
           students.forEach(student => {

@@ -18,7 +18,7 @@ const Registered = () => {
   const fetchRegisteredStudents = async () => {
     try {
       // Fetch students where the registered field is not empty
-      const response = await axios.get('https://placementportal.vercel.app/students');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/students');
       const studentsData = response.data.filter(student => student.registered.length > 0);
 
       setRegisteredStudents(studentsData);
@@ -30,7 +30,7 @@ const Registered = () => {
   const fetchCompanyNames = async () => {
     try {
       // Fetch unique company names from the event in mongodb
-      const response = await axios .get('https://placementportal.vercel.app/events');
+      const response = await axios .get('https://rit-placement-manager.vercel.app/events');
       const eventsData = response.data;
       const uniqueCompanyNames = [...new Set(eventsData.map(event => event.companyname))];
       setCompanyNames(uniqueCompanyNames);

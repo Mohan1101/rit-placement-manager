@@ -12,7 +12,7 @@ function Events() {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('https://placementportal.vercel.app/events');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/events');
       setEvents(response.data);
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -21,7 +21,7 @@ function Events() {
 
   const handleDelete = async (companyName) => {
     try {
-      await axios.delete(`https://placementportal.vercel.app/events/${companyName}`);
+      await axios.delete(`https://rit-placement-manager.vercel.app/events/${companyName}`);
       alert(`Successfully deleted ${companyName}`);
       // Fetch updated events data after deleting
       fetchEvents();

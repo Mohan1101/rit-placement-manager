@@ -21,7 +21,7 @@ function Addevent() {
 
         try {
             // Make a POST request to your server endpoint
-            await axios.post('https://placementportal.vercel.app/events/add', formData);
+            await axios.post('https://rit-placement-manager.vercel.app/events/add', formData);
 
             alert('Event added successfully!');
             navigate('/staff/events');

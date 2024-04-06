@@ -20,7 +20,7 @@ function Signin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://placementportal.vercel.app/login', {
+      const response = await axios.post('https://rit-placement-manager.vercel.app/login', {
         username,
         password,
       });

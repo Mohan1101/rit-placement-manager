@@ -13,7 +13,7 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const allowedOrigins = ['http://localhost:3000', 'https://placementapp-123.web.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://rit-placement-manager.web.app/'];
 app.use(cors({
     origin: allowedOrigins,
     methods: ["POST", "GET", "DELETE", "PUT", "PATCH"],

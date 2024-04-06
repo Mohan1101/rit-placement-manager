@@ -11,7 +11,7 @@ const Placed = () => {
     // Fetch placed students from Firestore
     const fetchPlacedStudents = async () => {
       try {
-        const response = await axios.get('https://placementportal.vercel.app/students');
+        const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const students = response.data;
         setPlacedStudents(students.filter(student => student.placed === 'Yes'));
 

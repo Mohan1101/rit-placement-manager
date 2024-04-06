@@ -13,7 +13,7 @@ const AllStudents = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       //fetch using axios from route /students
-      const response = await axios.get('https://placementportal.vercel.app/students');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/students');
       const studentsData = response.data;
       console.log('Students:', studentsData);
       setStudents(studentsData);
@@ -75,7 +75,7 @@ const AllStudents = () => {
 
                   <button onClick={async () => {
                     try {
-                      await axios.delete(`https://placementportal.vercel.app/students/del/${student.rollnumber}`);
+                      await axios.delete(`https://rit-placement-manager.vercel.app/students/del/${student.rollnumber}`);
                       alert(`Successfully deleted ${student.name}`);
                       window.location.reload();
                     } catch (error) {
