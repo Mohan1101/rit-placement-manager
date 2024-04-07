@@ -44,6 +44,26 @@ const User = mongoose.model('User', userSchema);
 
 
 
+// Login route
+app.post('/stafflogin', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await User.findOne({ username });
+
+        if (user && user.password === password) {
+            res.status(200).json({ success: true, message: 'Login successful' });
+        } else {
+            res.status(401).json({ success: false, message: 'Invalid username or password' });
+        }
+    } catch (error) {
+        console.error('Error logging in:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+
+
 
 
 // Event schema

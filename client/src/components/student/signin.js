@@ -55,7 +55,7 @@ function SignIn() {
 
     const getStudentData = async (rollnumber) => {
         // Check if rollnumber exists in the /students route
-        const response = await axios.get('http://localhost:3001/students');
+        const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const studentData = response.data.find((student) => student.rollnumber === rollnumber);
      
         return studentData;
