@@ -9,31 +9,21 @@ function Profile() {
         offerLetterFile: null,
     });
 
-    useEffect(() => {
-        const storedRollnumber = localStorage.getItem('rollnumber');
-        console.log('Stored Rollnumber:', storedRollnumber);
-        if (storedRollnumber) {
-            fetchStudentProfile(storedRollnumber);
-        }
-    }, []);
+   
 
-    const fetchStudentProfile = async (rollnumber) => {
-        try {
-            const studentData = await getStudentData(rollnumber);
-            setStudents([studentData]);
-            console.log('Student Profile:', studentData);
-        } catch (error) {
-            console.error('Error fetching student profile:', error);
-        }
-    };
+ 
 
     const getStudentData = async (rollnumber) => {
         try {
             const response = await axios.get('https://placementportal.vercel.app/students');
             const students = response.data;
             const studentData = students.find((student) => student.rollnumber === rollnumber);
+
+
           
             return studentData;
+
+            console.log('Student data:', studentData);
         } catch (error) {
             console.error('Error fetching student data from Firestore:', error);
             return null;

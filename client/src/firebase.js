@@ -4,14 +4,14 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBcxdYV421FxHA-qd3DjI34wYZESEaa_rw",
-  authDomain: "rit-placement-manager.firebaseapp.com",
-  projectId: "rit-placement-manager",
-  storageBucket: "rit-placement-manager.appspot.com",
-  messagingSenderId: "616480747730",
-  appId: "1:616480747730:web:6a41dece2e4167ca95fd0b",
-  measurementId: "G-90833RL9W0"
-};
+  apiKey: "AIzaSyDnheniIwPvOA71QnS1GVUrCzPhkt-YLZ4",
+  authDomain: "rit-placement.firebaseapp.com",
+  projectId: "rit-placement",
+  storageBucket: "rit-placement.appspot.com",
+  messagingSenderId: "569363473554",
+  appId: "1:569363473554:web:4afec3c36da065b591724b",
+  measurementId: "G-76HMNQS3CR"
+}; 
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
