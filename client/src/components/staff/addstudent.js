@@ -23,6 +23,8 @@ function AddStudent() {
         resumeFile: null,
         resumeDownloadLink: '',
         arrearCount: '',
+        marsheet: '',
+        marksheet2: '',
     });
     const navigate = useNavigate();
 
@@ -48,6 +50,8 @@ function AddStudent() {
                     resume: '', 
                     higherstudies: formData.higherstudies,
                     arrearCount: formData.arrearCount,
+                    marksheet: '',
+                    marksheet2: '',
                 }
 
                 // Send a POST request to your server with the studentData

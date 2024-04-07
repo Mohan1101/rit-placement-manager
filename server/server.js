@@ -114,6 +114,8 @@ const studentSchema = new mongoose.Schema({
     resume: String,
     higherstudies: String,
     arrearCount: String,
+    marksheet: String,
+    marksheet2: String,
     offerLetter: [String]
 });
 
@@ -223,6 +225,66 @@ app.put('/students/resume/:rollnumber', async (req, res) => {
         return res.status(200).json({ message: `Resume uploaded for student ${rollnumber}` });
     } catch (error) {
         console.error('Error updating resume', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// upload 10th marksheet
+
+app.put('/students/marksheet/:rollnumber', async (req, res) => {
+    const rollnumber = req.params.rollnumber;
+    const { marksheet } = req.body;
+    try {
+        const student = await Student.findOne({ rollnumber });
+
+        if (!student) {
+            return res.status(404).json({ message: `Student with roll number ${rollnumber} not found` });
+
+
+        }
+
+        student.marksheet = marksheet;
+
+
+
+        
+
+        // Save the updated student document
+        await student.save();
+
+        return res.status(200).json({ message: `Marksheet uploaded for student ${rollnumber}` });
+    } catch (error) {
+        console.error('Error updating marksheet', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// upload 12th marksheet
+
+app.put('/students/marksheet2/:rollnumber', async (req, res) => {
+    const rollnumber = req.params.rollnumber;
+    const { marksheet2 } = req.body;
+    try {
+        const student = await Student.findOne({ rollnumber });
+
+        if (!student) {
+            return res.status(404).json({ message: `Student with roll number ${rollnumber} not found` });
+
+
+        }
+
+        student.marksheet2 = marksheet2;
+
+
+
+        
+
+        // Save the updated student document
+        await student.save();
+
+        return res.status(200).json({ message: `Marksheet uploaded for student ${rollnumber}` });
+    } catch (error) {
+        console.error('Error updating marksheet', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 });
