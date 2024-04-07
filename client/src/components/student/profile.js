@@ -9,21 +9,32 @@ function Profile() {
         offerLetterFile: null,
     });
 
-   
+    useEffect(() => {
+        const storedRollnumber = localStorage.getItem('rollnumber');
+        console.log('Stored Rollnumber:', storedRollnumber);
+        if (storedRollnumber) {
+            fetchStudentProfile(storedRollnumber);
+        }
+    }, []);
 
- 
+    const fetchStudentProfile = async (rollnumber) => {
+        try {
+            const studentData = await getStudentData(rollnumber);
+            setStudents([studentData]);
+            console.log('Student Profile:', studentData);
+        } catch (error) {
+            console.error('Error fetching student profile:', error);
+        }
+    };
 
     const getStudentData = async (rollnumber) => {
         try {
-            const response = await axios.get('https://placementportal.vercel.app/students');
+            const response = await axios.get('http://localhost:3001/students');
             const students = response.data;
             const studentData = students.find((student) => student.rollnumber === rollnumber);
-
-
+          
           
             return studentData;
-
-            console.log('Student data:', studentData);
         } catch (error) {
             console.error('Error fetching student data from Firestore:', error);
             return null;
@@ -44,7 +55,7 @@ function Profile() {
             if (file) {
                 const downloadURL = await uploadFile(file);
                 updateStudentOfferLetter(downloadURL);
-                console.log('File uploaded successfully!');
+              
             }
         } catch (error) {
             console.error('Error uploading file:', error);
@@ -67,7 +78,7 @@ function Profile() {
     const updateStudentOfferLetter = async (downloadURL) => {
         const storedRollnumber = localStorage.getItem('rollnumber');
         try {
-            await axios.put(`https://placementportal.vercel.app/students/${storedRollnumber}`, {
+            await axios.put(`http://localhost:3001/students/${storedRollnumber}`, {
                 offerLetter: downloadURL,
             });
             alert('Student offer letter updated successfully!');
@@ -113,7 +124,7 @@ function Profile() {
     const updateResumeLink = async (downloadURL) => {
         const storedRollnumber = localStorage.getItem('rollnumber');
         try {
-            await axios.put(`https://placementportal.vercel.app/students/resume/${storedRollnumber}`, {
+            await axios.put(`http://localhost:3001/students/resume/${storedRollnumber}`, {
                 resume: downloadURL,
             });
             alert('Student resume updated successfully!');

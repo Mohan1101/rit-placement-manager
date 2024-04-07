@@ -5,13 +5,13 @@ import { firebaseApp } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
-    const [email, setEmail] = useState('');
+    const [rollnumber, setRollnumber] = useState('');
     const [dob, setDob] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+    const handleRollnumberChange = (e) => {
+        setRollnumber(e.target.value);
     };
 
     const handleDobChange = (e) => {
@@ -24,22 +24,22 @@ function SignIn() {
         try {
             const formattedDob = moment(dob, 'DD-MM-YYYY').format('YYYY-MM-DD');
 
-            // Check if the email exists in the "Student" collection
-            const studentData = await getStudentData(email);
+            // Check if the rollnumber exists in the "Student" collection
+            const studentData = await getStudentData(rollnumber);
 
             if (!studentData) {
-                setErrorMessage('Email does not exist.');
+                setErrorMessage('Rollnumber does not exist.');
                 return;
             }
 
-            // If email exists, check if the provided dob matches
+            // If rollnumber exists, check if the provided dob matches
             if (studentData.dob === formattedDob) {
                 console.log('Login successful!');
                 setErrorMessage('');
 
                 // Store rollnumber, email, and role in local storage
-                localStorage.setItem('rollnumber', studentData.rollnumber);
-                localStorage.setItem('email', email);
+                localStorage.setItem('rollnumber', rollnumber);
+                localStorage.setItem('email', studentData.email);
                 localStorage.setItem('userRole', 'student');
 
                 // Navigate to /student after successful login
@@ -53,10 +53,10 @@ function SignIn() {
         }
     };
 
-    const getStudentData = async (email) => {
-        // Check if email exists in the /students route in the email field
-        const response = await axios.get('https://rit-placement-manager.vercel.app/students');
-        const studentData = response.data.find((student) => student.email === email);
+    const getStudentData = async (rollnumber) => {
+        // Check if rollnumber exists in the /students route
+        const response = await axios.get('http://localhost:3001/students');
+        const studentData = response.data.find((student) => student.rollnumber === rollnumber);
      
         return studentData;
     };
@@ -73,11 +73,11 @@ function SignIn() {
                 <br />
                 <div className={'inputContainer'}>
                     <input
-                        type="email"
-                        placeholder="Enter your email here"
+                        type="text"
+                        placeholder="Enter your rollnumber here"
                         className={'inputBox'}
-                        value={email}
-                        onChange={handleEmailChange}
+                        value={rollnumber}
+                        onChange={handleRollnumberChange}
                     />
                     <label className="errorLabel">{errorMessage}</label>
                 </div>
@@ -90,7 +90,6 @@ function SignIn() {
                         value={dob}
                         onChange={handleDobChange}
                     />
-                    <label className="errorLabel">{errorMessage}</label>
                 </div>
                 <br />
                 <div className={'inputContainer'}>

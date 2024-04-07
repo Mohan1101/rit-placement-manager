@@ -42,23 +42,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Login route
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
 
-    try {
-        const user = await User.findOne({ username });
-
-        if (user && user.password === password) {
-            res.status(200).json({ success: true, message: 'Login successful' });
-        } else {
-            res.status(401).json({ success: false, message: 'Invalid username or password' });
-        }
-    } catch (error) {
-        console.error('Error logging in:', error);
-        res.status(500).json({ success: false, message: 'Internal server error' });
-    }
-});
 
 
 
@@ -134,6 +118,26 @@ const studentSchema = new mongoose.Schema({
 });
 
 const Student = mongoose.model('Student', studentSchema);
+
+
+//login
+app.post('/login', async (req, res) => {
+    const { rollnumber, dob } = req.body;
+
+    try {
+        const student = await Student.findOne({ rollnumber });
+
+        if (student && student.dob === dob) {
+            res.status(200).json({ success: true, message: 'Login successful' });
+        } else {
+            res.status(401).json({ success: false, message: 'Invalid rollnumber or date of birth' });
+        }
+    } catch (error) {
+        console.error('Error logging in:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
 
 // Route to get all students
 app.get('/students', async (req, res) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { firebaseApp } from '../../firebase';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
@@ -8,46 +8,34 @@ function Dashboard() {
 
     useEffect(() => {
         const storedRollnumber = localStorage.getItem('rollnumber');
-      
         if (storedRollnumber) {
-            fetchStudentProfile(storedRollnumber);
+            getStudentName(storedRollnumber);
         }
     }, []);
 
-    const fetchStudentProfile = async (rollnumber) => {
+    const getStudentName = async (rollnumber) => {
         try {
-            const studentData = await getStudentData(rollnumber);
+            const response = await axios.get('http://localhost:3001/students');
+            const students = response.data;
+            const studentData = students.find((student) => student.rollnumber === rollnumber);
+       
             setStudents([studentData]);
-         
         } catch (error) {
-            console.error('Error fetching student profile:', error);
+            console.error('Error fetching student data from Firestore:', error);
         }
     };
-
-    const getStudentData = async (rollnumber) => {
-      try {
-          const studentDoc = await firebaseApp.firestore().collection('Student').doc(rollnumber).get();
-  
-          if (studentDoc.exists) {
-              const studentData = studentDoc.data();
-            
-              return studentData;
-          } else {
-              console.log('Student not found in Firestore.');
-              return null;
-          }
-      } catch (error) {
-          console.error('Error fetching student data from Firestore:', error);
-          return null;
-      }
-    };
+      
     return (
        <div>
          <div>
             <div className='topnav'>
                 <h1>CDP</h1>
                 <div>
-                    <h2>Welcome <span >{students[0]?.name}
+                    <h2>Welcome <span>
+                    {students.map((student) => (
+                        <span key={student.rollnumber}>{student.name}</span>
+                    ))}
+
                         </span></h2>
                 </div>
             </div>

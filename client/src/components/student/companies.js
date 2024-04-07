@@ -24,8 +24,6 @@ function Companies() {
   const handleApply = async (companyName) => {
     try {
         const rollnumber = localStorage.getItem('rollnumber');
-        console.log('Rollnumber:', rollnumber);
-        console.log('Company:', companyName);
 
         const response = await axios.post('https://rit-placement-manager.vercel.app/apply', {
             rollnumber: rollnumber,
@@ -36,13 +34,13 @@ function Companies() {
 
         if (response.status === 200) {
             alert(`Successfully applied for ${companyName}`);
-            console.log(`Successfully applied for ${companyName}`);
+        
         } else if (response.status === 201) {
             alert(`Already applied for ${companyName}`);
-            console.log(`Already applied for ${companyName}`);
+    
         } else if (response.status === 400) {
             alert(`Error applying for ${companyName}: ${response.data.message}`);
-            console.error(`Error applying for ${companyName}:`, response.data.message);
+      
         }
     } catch (error) {
         console.error('Error applying for company:', error);

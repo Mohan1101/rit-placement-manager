@@ -8,9 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function FeedbackForm() {
   const { companyname, index } = useParams();
   const [feedbackContent, setFeedbackContent] = useState('');
-  useEffect(() => {
-    console.log('FeedbackForm component is rendered');
-  }, []);
+
 
   const navigate = useNavigate();
 

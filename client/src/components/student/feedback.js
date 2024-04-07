@@ -57,7 +57,6 @@ const Feedback = () => {
 
       const feedbackResults = await Promise.all(feedbackPromises);
       setFeedbackData(feedbackResults);
-      console.log('Feedback:', feedbackResults);
       
     } catch (error) {
       console.error('Error fetching feedback:', error);
