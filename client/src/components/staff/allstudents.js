@@ -15,7 +15,7 @@ const AllStudents = () => {
       //fetch using axios from route /students
       const response = await axios.get('https://rit-placement-manager.vercel.app/students');
       const studentsData = response.data;
-      console.log('Students:', studentsData);
+
       setStudents(studentsData);
     };
 
@@ -25,12 +25,9 @@ const AllStudents = () => {
   return (
     <section>
       <Navbar />
-      <div className='container'>
+      <div className='px-2'>
         <Studentsnav />
-
-        <h2>Total Students</h2>
-        <Link to="/staff/addstudent"><button>Add Student</button></Link>
-        <table>
+        <table className='-mt-1'>
           <thead>
             <tr>
               <th>Name</th>

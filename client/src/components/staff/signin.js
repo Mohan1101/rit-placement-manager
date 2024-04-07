@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar from '../navbar';
 import { useNavigate } from 'react-router-dom';
 
 function Signin() {
@@ -16,8 +17,13 @@ function Signin() {
     setUsername(e.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+        handleLogin();
+    }
+};
+
   const handleLogin = async (e) => {
-    e.preventDefault();
 
     try {
       const response = await axios.post('https://rit-placement-manager.vercel.app/stafflogin', {
@@ -40,6 +46,7 @@ function Signin() {
 
     return (
         <div className={'mainContainer'}>
+            <Navbar />
              <div className={'signinContainer'}>
             <div className={'titleContainer'}>
                 <div>Admin Login</div>
@@ -56,6 +63,7 @@ function Signin() {
                     placeholder="Enter your username here"
                     value={username}
                     onChange={handleUsernameChange}
+                    onKeyPress={handleKeyPress}
                 />
             </div>
             <br />
@@ -69,6 +77,7 @@ function Signin() {
                     placeholder="Enter your password here"
                     value={password}
                     onChange={handlePasswordChange}
+                    onKeyPress={handleKeyPress}
                 />
             </div>
             <br />

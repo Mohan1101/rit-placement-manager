@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import Navbar from '../navbar';
 import { firebaseApp } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,9 +19,13 @@ function SignIn() {
         setDob(e.target.value);
     };
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleLogin();
+        }
+    };
 
+    const handleLogin = async () => {
         try {
             const formattedDob = moment(dob, 'DD-MM-YYYY').format('YYYY-MM-DD');
 
@@ -63,9 +68,10 @@ function SignIn() {
 
     return (
         <div className={'mainContainer'}>
+            <Navbar />
             <div className={'signinContainer'}>
                 <div className={'titleContainer'}>
-                    <div>Login</div>
+                    <div>Student Login</div>
                 </div>
 
                 <br />
@@ -78,6 +84,7 @@ function SignIn() {
                         className={'inputBox'}
                         value={rollnumber}
                         onChange={handleRollnumberChange}
+                        onKeyPress={handleKeyPress}
                     />
                     <label className="errorLabel">{errorMessage}</label>
                 </div>
@@ -89,6 +96,7 @@ function SignIn() {
                         className={'inputBox'}
                         value={dob}
                         onChange={handleDobChange}
+                        onKeyPress={handleKeyPress}
                     />
                 </div>
                 <br />

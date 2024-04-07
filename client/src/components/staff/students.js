@@ -10,7 +10,7 @@ const Students = () => {
   return (
     <div>
       <Navbar/>
-      <div className='container'>
+      <div className='bg-sidenav'>
         <Studentsnav/>
       </div>
     </div>

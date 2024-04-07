@@ -27,10 +27,10 @@ const Placed = () => {
     <div>
       <h1></h1>
       <Navbar />
-      <div className='container'>
+      <div className='px-2'>
         <Studentsnav />
-        <h2>Placed Students</h2>
-        <table>
+        <h2 className='text-2xl py-2 font-bold text-center'>Placed Students</h2>
+        <table className='-mt-1'>
           <thead>
             <tr>
               <th>Name</th>

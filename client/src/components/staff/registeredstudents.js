@@ -58,19 +58,18 @@ const Registered = () => {
   return (
     <div>
       <Navbar />
-      <div className='container'>
+      <div className='px-2'>
         <Studentsnav />
-
-        <br />
-        <h2>Registered Students</h2>
-        <label>Filter by Company : </label>
+        <div className='flex gap-4 items-center justify-center'>
+        <div className='font-bold -mt-4 '>Filter by Company : </div>
         <select  className={'inputBox'} value={selectedCompany} onChange={handleCompanyChange}>
           <option value="" disabled>Select a company</option>
           {companyNames.map((company, index) => (
             <option key={index} value={company}>{company}</option>
           ))}
         </select>
-        <table>
+        </div>
+        <table className='-mt-2'>
           <thead>
             <tr>
               <th>Name</th>

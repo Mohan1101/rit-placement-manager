@@ -33,25 +33,28 @@ function Events() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-        <h1>Upcoming Events</h1>
+      <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4 '>
+      Upcoming Events</h2>
+      <div className='mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
+       
         <Link to="/staff/addevent">
           <button>Add Event</button>
         </Link>
-        <br /><br />
-        <div className='upcomingevents'>
-          {events.map((event, index) => (
-            <div key={index} className='events_'>
-              <p>{event.companyname}</p>
-              <p>{event.role}, {event.category}</p>
-              <p>Degree : {event.degree}</p>
-              <p>Batch : {event.batch}</p>
-              <p>Branch : {event.branch}</p>
-              <p>Drive Date: {event.date}</p>
-              <button onClick={() => handleDelete(event.companyname)}>Delete</button>
-            </div>
-          ))}
-        </div>
+     
+        <div>
+  {events.map((event, index) => (
+    <div key={index} className='events_ '>
+      <p>{event.companyname}</p>
+      <p>{event.role}, {event.category}</p>
+      <p>Degree : {event.degree}</p>
+      <p>Batch : {event.batch}</p>
+      <p>Branch : {event.branch}</p>
+      <p>Drive Date: {event.date}</p>
+      <button onClick={() => handleDelete(event.companyname)}>Delete</button>
+    </div>
+  ))}
+</div>
+
       </div>
     </div>
   );

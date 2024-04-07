@@ -74,7 +74,8 @@ const eventSchema = new mongoose.Schema({
     branch: String,
     role: String,
     date: String,
-    category: String
+    category: String,
+    ctc: String
 });
 
 const Event = mongoose.model('Event', eventSchema);

@@ -48,13 +48,15 @@ const Eligible = () => {
     <div>
       <h1></h1>
       <Navbar />
-      <div className='container'>
+      <div className='px-2'>
         <Studentsnav />
-        <h2>Eligible Students</h2>
-        <label>Filter by CGPA: </label>
       
-        <input type='number'  className={'inputBox'}  step='0.01' max='10' value={cgpaFilter} onChange={handleCgpaChange} />
-        <table>
+       <div className='flex items-center gap-4 justify-center'>
+       <div className='font-bold -mt-4'>Filter by CGPA: </div>
+      
+      <input type='number'  className={'inputBox'}  step='0.01' max='10' value={cgpaFilter} onChange={handleCgpaChange} />
+      </div>
+        <table className='-mt-1'>
           <thead>
             <tr>
               <th>Name</th>

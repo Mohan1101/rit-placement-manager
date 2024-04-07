@@ -1,14 +1,31 @@
-body{
-  background-color: snow;
+
+
+
+
+
+.signinnav {
+      background-color: #095089;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      text-align: center;
+      font-size: larger;
+      
 }
 .topnav{
-  z-index: 1;
+  z-index: 10;
   position: fixed;
+  
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   top: 0;
   width: 100%;
   padding-left: 4%;
-  background-color: rgba(141, 210, 221, 0.4);
+  position: fixed;
+  background-color: #095089;
 }
 .topnav div{
   position: fixed;
@@ -27,20 +44,21 @@ body{
   padding: 10% 2%;
   height: 100%;
   width: 10%;
-  background-color: rgba(141, 210, 221, 0.4);
+  background-color:#f4f4f5;
 }
 .sidenav button{
   font-size: 18px;
-  padding: 10px 20px;
   width: 100%;
   font-weight: 700;
-  background-color: #8DD2DD;
+  background-color: #095089;
+  color: white;
   border: 1px solid white;
+  cursor: pointer;
   text-align: left;
   border-radius: 5px;
 }
 .sidenav button:hover{
-  background-color: #2fadc6;
+  background-color: #004080;
 }
 .studentnav{
   z-index: 0;
@@ -58,19 +76,24 @@ body{
   padding: 20px 20px;
   width: 100%;
   font-weight: 700;
-  background-color: #8DD2DD;
+  background-color: #095089;
+  color: white;
   border: 1px solid white;
   text-align: left;
   border-radius: 5px;
   text-align: center;
   text-transform: uppercase;
+  cursor: pointer;
+}
+.studentnav button:hover{
+  background-color: #004080;
 }
 .container{
   margin: 8% 15%;
   width:80%;
   padding-top: 0%;
   padding: 2%;
-  background-color: #8DD2DD66;
+  background-color: #f4f4f5;
   border-radius:  5px;
 }
 .container h1{
@@ -90,7 +113,7 @@ body{
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-  width: 50%;
+  
   background-color: #ffffff;
   
 
@@ -106,7 +129,8 @@ table {
 }
 
 table tr th {
-  background-color: #8DD2DD;
+  background-color: #095089;
+  color: white;
   
   text-align: center;
 }
@@ -125,7 +149,7 @@ table tbody tr:nth-of-type(even) {
 }
 
 table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+  border-bottom: 2px solid #095089;
 }
 
 .signinContainer {
@@ -140,7 +164,7 @@ table tbody tr:last-of-type {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/placementapp-123.appspot.com/o/background.png.jpg?alt=media&token=d25fc8d7-c083-41f9-a75a-2b99e116c952");
+
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -207,7 +231,10 @@ table tbody tr:last-of-type {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/placementapp-123.appspot.com/o/background.png.jpg?alt=media&token=d25fc8d7-c083-41f9-a75a-2b99e116c952');
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/rit-placement.appspot.com/o/assests%2Frit-about.png?alt=media&token=70241d51-4101-4437-879c-cab26c25efab');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   color: black;
 
   
@@ -221,10 +248,12 @@ table tbody tr:last-of-type {
   padding: 5% 5%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1;
+
 }
 
 .sign button {
-  background-color: #E74D6987;
+  background-color:#095089;
+  color: white;
   font-size: 16px;
   padding: 10px 20px;
   margin: 10px;
@@ -236,7 +265,7 @@ table tbody tr:last-of-type {
 }
 
 .sign button:hover {
-  background-color: #E74D69;
+  background-color: #004080;
 }
 
 textarea {
@@ -255,9 +284,10 @@ button {
 
     font-size: 18px;
     padding: 10px 20px;
-  
+    cursor: pointer;
     font-weight: 600;
-    background-color: #8DD2DD;
+    background-color: #095089;
+    color: white;
     border: 1px solid white;
     text-align: left;
     border-radius: 10px;
@@ -268,16 +298,16 @@ button {
 }
 
 button:hover {
-  background-color: #2fadc6;
+  background-color: #004080;
 }
 
 .loginButton{
-  background-color: #E74D6987;
+  background-color: #095089;
   font-size: 18px;
   padding: 10px 20px;
-
+  color: white;
   font-weight: 600;
-
+  cursor: pointer;
   border: 1px solid white;
   text-align: left;
   border-radius: 5px;
@@ -285,6 +315,5 @@ button:hover {
 }
 
 .loginButton:hover {
-  background-color: #E74D69;
-  cursor: pointer;
+  background-color: #004080;
 }

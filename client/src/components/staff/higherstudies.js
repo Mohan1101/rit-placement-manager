@@ -20,7 +20,7 @@ const Higherstudies = () => {
         
         setHigherStudiesStudents(higherStudiesStudents);
 
-        console.log('studentsData:', higherStudiesStudents);
+     
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -34,10 +34,9 @@ const Higherstudies = () => {
     <div>
       <h1></h1>
       <Navbar/>
-      <div className='container'>
+      <div className='px-2'>
         <Studentsnav/>
-        <h2>Higher Studies</h2>
-        <table>
+        <table className='-mt-1'>
           <thead>
             <tr>
               <th>Name</th>

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,323 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+
+
+
+.signinnav {
+      background-color: #095089;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      text-align: center;
+      font-size: larger;
+      
+}
+.topnav{
+  z-index: 1;
+  position: fixed;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+  padding-left: 4%;
+  position: fixed;
+  background-color: #095089;
+}
+.topnav div{
+  position: fixed;
+  display: flex;
+  right: 5%;
+}
+.sidenav{
+  z-index: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 0;
+  left: 0;
+  padding-bottom: 40vh;
+  padding: 10% 2%;
+  height: 100%;
+  width: 10%;
+  background-color:#f4f4f5;
+}
+.sidenav button{
+  font-size: 18px;
+  width: 100%;
+  font-weight: 700;
+  background-color: #095089;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 5px;
+}
+.sidenav button:hover{
+  background-color: #004080;
+}
+.studentnav{
+  z-index: 0;
+  display: flex;
+  gap: 10px;
+  padding-bottom: 2vh;
+  width: 100%;
+  margin-top: 4%;
+}
+
+.studentnav button{
+  font-size: 18px;
+  
+  font-size: 17px;
+  padding: 20px 20px;
+  width: 100%;
+  font-weight: 700;
+  background-color: #095089;
+  color: white;
+  border: 1px solid white;
+  text-align: left;
+  border-radius: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.studentnav button:hover{
+  background-color: #004080;
+}
+.container{
+  margin: 8% 15%;
+  width:80%;
+  padding-top: 0%;
+  padding: 2%;
+  background-color: #f4f4f5;
+  border-radius:  5px;
+}
+.container h1{
+  text-align: center;
+  margin-bottom: -2%;
+  
+}
+.container h2{
+  text-align: center;
+  margin-bottom: 2%;
+  font-size: 32px;
+  
+}
+
+.events_{
+  border : 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 50%;
+  background-color: #ffffff;
+  
+
+}
+
+
+
+table {
+  width: 100%;
+  margin-top: 2%;
+  text-align: center;
+  color: black;
+}
+
+table tr th {
+  background-color: #095089;
+  color: white;
+  
+  text-align: center;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #095089;
+}
+
+.signinContainer {
+  border : 1px solid black;
+  padding: 2%;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.mainContainer {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 64px;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+}
+
+.resultContainer,
+.historyItem {
+  flex-direction: row;
+  display: flex;
+  width: 400px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.historyContainer {
+  flex-direction: column;
+  display: flex;
+  height: 200px;
+  align-items: center;
+  flex-grow: 5;
+  justify-content: flex-start;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.inputContainer > .errorLabel {
+  color: red;
+  font-size: 12px;
+}
+
+.inputBox {
+  height: 38px;
+  width: 400px;
+  font-size: large;
+  border-radius: 8px;
+  border: 1px solid grey;
+  padding-left: 8px;
+  margin-bottom: 1%;
+}
+
+.sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/rit-placement.appspot.com/o/assests%2Frit-about.png?alt=media&token=70241d51-4101-4437-879c-cab26c25efab');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: black;
+
+  
+}
+
+.sign div {
+  text-align: center;
+  border: 1px solid #004080;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 5% 5%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+
+}
+
+.sign button {
+  background-color:#095089;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sign button:hover {
+  background-color: #004080;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+} 
+
+
+button {
+
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #095089;
+    color: white;
+    border: 1px solid white;
+    text-align: left;
+    border-radius: 10px;
+    margin-top: 1%;
+ 
+ 
+ 
+}
+
+button:hover {
+  background-color: #004080;
+}
+
+.loginButton{
+  background-color: #095089;
+  font-size: 18px;
+  padding: 10px 20px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid white;
+  text-align: left;
+  border-radius: 5px;
+  margin-top: 1%;
+}
+
+.loginButton:hover {
+  background-color: #004080;
 }
