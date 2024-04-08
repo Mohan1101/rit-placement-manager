@@ -7,6 +7,10 @@ module.exports = {
         'nav': '#095089',
         'sidenav':'#f4f4f5',
       },
+      textColor: {
+        'nav': '#095089',
+        'nav-dark': '#073d5b',
+      },
     },
   },
   plugins: [],

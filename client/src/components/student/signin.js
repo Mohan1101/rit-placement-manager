@@ -69,9 +69,9 @@ function SignIn() {
     return (
         <div className={'mainContainer'}>
             <Navbar />
-            <div className={'signinContainer'}>
+            <div className={'signinContainer  bg-sidenav'}>
                 <div className={'titleContainer'}>
-                    <div>Student Login</div>
+                    Student Login
                 </div>
 
                 <br />
