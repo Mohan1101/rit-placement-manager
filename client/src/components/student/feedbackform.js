@@ -41,8 +41,11 @@ function FeedbackForm() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-      <h2>Feedback for {companyname}</h2>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
+      Feedback for {companyname}
+      </h2>
+      <div className='mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
+      
       <textarea
         value={feedbackContent}
         onChange={(e) => setFeedbackContent(e.target.value)}

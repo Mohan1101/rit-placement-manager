@@ -31,9 +31,13 @@ function ViewResponses() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-        <h1>Student Responses for {companyname}</h1>
-        <br/><br/>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
+        
+       
+    Student Responses for {companyname}
+      </h2>
+      <div className='px-2 -mt-4'>
+
         <div className='responses'>
           <table>
             <thead>

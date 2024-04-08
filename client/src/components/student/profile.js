@@ -10,6 +10,8 @@ function Profile() {
         resumeFile: null,
         marksheetFile: null,
         marksheet2File: null,
+        photo: null,
+
     });
 
     useEffect(() => {
@@ -35,11 +37,11 @@ function Profile() {
             const response = await axios.get('https://rit-placement-manager.vercel.app/students');
             const students = response.data;
             const studentData = students.find((student) => student.rollnumber === rollnumber);
-          
-          
+
+
             return studentData;
         } catch (error) {
-            console.error('Error fetching student data from Firestore:', error);
+            console.error('Error fetching student data from API:', error);
             return null;
         }
     };
@@ -51,6 +53,7 @@ function Profile() {
             resumeFile: e.target.files[0],
             marksheetFile: e.target.files[0],
             marksheet2File: e.target.files[0],
+            photo: e.target.files[0],
         });
     };
 
@@ -60,7 +63,7 @@ function Profile() {
             if (file) {
                 const downloadURL = await uploadFile(file);
                 updateStudentOfferLetter(downloadURL);
-              
+
             }
         } catch (error) {
             console.error('Error uploading file:', error);
@@ -91,7 +94,7 @@ function Profile() {
             // reset the file input
             document.getElementById('offerLetterFile').value = '';
 
-            
+
 
         } catch (error) {
             console.error('Error updating student offer letter:', error);
@@ -99,7 +102,7 @@ function Profile() {
     };
 
     const handleResumeUpload = async () => {
-     
+
 
         try {
             const file = formData.offerLetterFile;
@@ -113,7 +116,7 @@ function Profile() {
         }
     }
 
-    
+
     const uploadResumeFile = async (file) => {
         try {
             const storageRef = firebaseApp.storage().ref();
@@ -183,7 +186,7 @@ function Profile() {
             console.error('Error updating student marksheet:', error);
         }
     }
-    
+
     const handleMarksheet2Upload = async () => {
         try {
             const file = formData.marksheet2File;
@@ -198,18 +201,18 @@ function Profile() {
     }
 
     const uploadMarksheet2File = async (file) => {
-            
-            try {
-                const storageRef = firebaseApp.storage().ref();
-                const fileRef = storageRef.child(`marksheet2/${formData.rollnumber}_${file.name}`);
-                await fileRef.put(file);
-                return await fileRef.getDownloadURL();
-            }
-            catch (error) {
-                console.error('Error uploading file:', error);
-                throw error;
-            }
+
+        try {
+            const storageRef = firebaseApp.storage().ref();
+            const fileRef = storageRef.child(`marksheet2/${formData.rollnumber}_${file.name}`);
+            await fileRef.put(file);
+            return await fileRef.getDownloadURL();
         }
+        catch (error) {
+            console.error('Error uploading file:', error);
+            throw error;
+        }
+    }
 
     const updateMarksheet2Link = async (downloadURL) => {
         const storedRollnumber = localStorage.getItem('rollnumber');
@@ -226,18 +229,63 @@ function Profile() {
         }
     }
 
+    const handlePhotoUpload = async () => {
+        try {
+            const file = formData.photo;
+            if (file) {
+                const downloadURL = await uploadPhotoFile(file);
+                updatePhotoLink(downloadURL);
+                console.log('File uploaded successfully!');
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+    };
+
+    const uploadPhotoFile = async (file) => {
+        try {
+            const storageRef = firebaseApp.storage().ref();
+            const fileRef = storageRef.child(`photo/${formData.rollnumber}_${file.name}`);
+            await fileRef.put(file);
+            return await fileRef.getDownloadURL();
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            throw error;
+        }
+    };
+
+    const updatePhotoLink = async (downloadURL) => {
+        const storedRollnumber = localStorage.getItem('rollnumber');
+        try {
+            await axios.put(`https://rit-placement-manager.vercel.app/students/photo/${storedRollnumber}`, {
+                photo: downloadURL, // Use 'photo' instead of 'photoFile'
+            });
+            alert('Student photo updated successfully!');
+            console.log('Student photo updated successfully!');
+            // reset the file input
+            document.getElementById('photo').value = '';
+        } catch (error) {
+            console.error('Error updating student photo:', error);
+        }
+    };
 
 
-    
-    
-    
+
+
+
+
+
+
 
     return (
         <div>
             <Navbar />
-            <div className='container'>
-                <h2>Student Profile</h2>
-                <div className='events_'>
+            <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
+                Student Profile
+            </h2>
+            <div className='flex justify-between mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
+
+                <div className='w-2/3 events_ font-semibold'>
                     {students.map((student, index) => (
                         <div key={index}>
                             <p>Name : {student.name}</p>
@@ -247,7 +295,16 @@ function Profile() {
                             <p>Branch : {student.branch}</p>
                             <p>Phone : {student.phone}</p>
                             <p>Email : {student.email}</p>
-                     
+
+
+                            <div>
+                                <label htmlFor="photo">Photo: </label>
+                                <input type='file' id='photo' name='photo' onChange={handleFileChange} required />
+                            </div>
+                            <button type="button" onClick={handlePhotoUpload}>
+                                Upload Photo
+                            </button>
+
                             <div>
                                 <label htmlFor="marksheetFile">Marksheet: </label>
                                 <input type='file' id='marksheetFile' name='marksheetFile' onChange={handleFileChange} required />
@@ -255,7 +312,7 @@ function Profile() {
                             <button type="button" onClick={handleMarksheetUpload}>
                                 Upload Marksheet
                             </button>
-                     
+
                             <div>
                                 <label htmlFor="marksheet2File">Marksheet2: </label>
                                 <input type='file' id='marksheet2File' name='marksheet2File' onChange={handleFileChange} required />
@@ -268,7 +325,7 @@ function Profile() {
                                 <label htmlFor="offerLetterFile">Offer Letter: </label>
                                 <input type='file' id='offerLetterFile' name='offerLetterFile' onChange={handleFileChange} required />
                             </div>
-                          
+
 
                             <button type="button" onClick={handleFileUpload}>
                                 Upload Offer Letter
@@ -284,7 +341,17 @@ function Profile() {
                         </div>
                     ))}
                 </div>
+                <div className='w-1/3'>
+                {
+                    students.map((student, index) => (
+                        <img src={student.photo} alt='student photo' className='rounded-full w-48 h-48  bg-center' />
+                    ))
+                }
             </div>
+            </div>
+
+         
+
         </div>
     );
 }

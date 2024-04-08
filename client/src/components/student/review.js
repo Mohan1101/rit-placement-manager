@@ -34,14 +34,16 @@ function Feedback() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-        <h1>Review</h1>
-        <br/><br/>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
+        Review
+      </h2>
+      <div className='mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
+       
         
         <div className='upcomingevents'>
   
           {feedbackData.map((feedback, index) => (
-            <div key={index} className='events_'>
+            <div key={index} className='events_ font-semibold'>
               <p>Company Name: {feedback.companyname}</p>
               <Link to={`/student/view/${feedback.companyname}`}><button>View</button></Link>
               

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 import { firebaseApp, db } from '../../firebase';
 
 function Companies() {
@@ -53,23 +54,27 @@ function Companies() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-        <h1>Companies</h1>
-        <br /><br />
-        <div className='upcomingevents'>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
+        Companies
+      </h2>
+
+      
+        <div className='upcomingevents mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
           {events.map((event, index) => (
-            <div key={index} className='events_'>
-              <p>{event.companyname}</p>
-              <p>{event.role}, {event.category}</p>
+            <div key={index} className='events_ font-semibold'>
+              <p>Company Name: {event.companyname}</p>
+              <p>Role: {event.role}, {event.category}</p>
               <p>Degree: {event.degree}</p>
               <p>Batch: {event.batch}</p>
               <p>Branch: {event.branch}</p>
-              <p>Drive Date: {event.date}</p>
+              <p>Drive Date: {moment(event.date).format('DD-MM-YYYY')}</p> {/* Format the date using moment */}
+              
+              <p>CTC: {event.ctc} LPA</p>
               <button onClick={() => handleApply(event.companyname)}>Apply</button>
             </div>
           ))}
         </div>
-      </div>
+  
     </div>
   );
 }

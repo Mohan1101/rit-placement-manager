@@ -76,8 +76,9 @@ function SignIn() {
 
                 <br />
                 <hr />
-                <br />
+
                 <div className={'inputContainer'}>
+                <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         placeholder="Enter your rollnumber here"
@@ -90,6 +91,7 @@ function SignIn() {
                 </div>
                 <br />
                 <div className={'inputContainer'}>
+                <label htmlFor="dob">Password</label>
                     <input
                         type="text"
                         placeholder="Enter your date of birth (dd-mm-yyyy)"

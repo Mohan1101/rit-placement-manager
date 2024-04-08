@@ -10,7 +10,7 @@ const Students = () => {
   return (
     <div>
       <Navbar/>
-      <div className='bg-sidenav'>
+      <div className='mt-16 bg-sidenav'>
         <Studentsnav/>
       </div>
     </div>

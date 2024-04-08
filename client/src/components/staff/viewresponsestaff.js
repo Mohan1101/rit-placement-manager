@@ -31,10 +31,11 @@ function ViewResponses() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-        <h1>Student Responses for {companyname}</h1>
-        <br/><br/>
-        <div className='responses'>
+      <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4'>
+        Responses for {companyname}
+      </h2>
+  
+        <div className='px-2 -mt-4 responses'>
           <table>
             <thead>
               <tr>
@@ -52,7 +53,7 @@ function ViewResponses() {
             </tbody>
           </table>
         </div>
-      </div>
+    
     </div>
   );
 }

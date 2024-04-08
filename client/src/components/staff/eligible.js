@@ -48,7 +48,7 @@ const Eligible = () => {
     <div>
       <h1></h1>
       <Navbar />
-      <div className='px-2'>
+      <div className='mt-16 px-2'>
         <Studentsnav />
       
        <div className='flex items-center gap-4 justify-center'>

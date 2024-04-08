@@ -102,6 +102,43 @@ app.post('/events/add', async (req, res) => {
     }
 });
 
+// Route to get an event by ID
+app.get('/events/:eventId', async (req, res) => {
+    const eventId = req.params.eventId;
+    try {
+        const event = await Event.findById(eventId);
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+        res.status(200).json(event);
+    } catch (error) {
+        console.error('Error fetching event by ID:', error);
+        res.status(500).json({ error: 'Error fetching event by ID' });
+    }
+});
+
+
+// PUT route to update an event by ID
+app.put('/events/:eventId', async (req, res) => {
+    try {
+        const eventId = req.params.eventId;
+        const updatedEventData = req.body; // New event data from request body
+
+        // Find the event by ID and update it
+        const updatedEvent = await Event.findByIdAndUpdate(eventId, updatedEventData, { new: true });
+
+        if (!updatedEvent) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        res.status(200).json(updatedEvent); // Send updated event as response
+    } catch (error) {
+        console.error('Error updating event:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 
 
 // Route to delete an event
@@ -137,6 +174,7 @@ const studentSchema = new mongoose.Schema({
     arrearCount: String,
     marksheet: String,
     marksheet2: String,
+    photo: String,
     offerLetter: [String]
 });
 
@@ -309,6 +347,31 @@ app.put('/students/marksheet2/:rollnumber', async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+// upload photo
+
+app.put('/students/photo/:rollnumber', async (req, res) => {
+    const rollnumber = req.params.rollnumber;
+    const { photo } = req.body; // Update to 'photo' instead of 'photoFile'
+    try {
+        const student = await Student.findOne({ rollnumber });
+
+        if (!student) {
+            return res.status(404).json({ message: `Student with roll number ${rollnumber} not found` });
+        }
+
+        student.photo = photo; // Update 'photoFile' to 'photo'
+
+        await student.save();
+
+        return res.status(200).json({ message: `Photo uploaded for student ${rollnumber}` });
+    } catch (error) {
+        console.error('Error updating photo', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 
 //delete student
 app.delete('/students/del/:rollnumber', async (req, res) => {

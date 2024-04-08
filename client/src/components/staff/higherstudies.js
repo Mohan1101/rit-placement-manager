@@ -34,7 +34,7 @@ const Higherstudies = () => {
     <div>
       <h1></h1>
       <Navbar/>
-      <div className='px-2'>
+      <div className='mt-16 px-2'>
         <Studentsnav/>
         <table className='-mt-1'>
           <thead>

@@ -73,10 +73,11 @@ function Feedback() {
   return (
     <div>
       <Navbar />
-      <div className='container'>
-        <h1>Feedback</h1>
-        <br/><br/>
-        <div>
+      <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4'>
+        Feedback
+      </h2>
+      <div className='mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
+        <div className='font-semibold flex gap-4 items-center justify-center'>
           <label>Select a  Company : </label>
           <select  className={'inputBox'} value={selectedCompany} onChange={(e) => setSelectedCompany(e.target.value)}>
             <option value="" disabled> Select Company </option>
@@ -84,19 +85,15 @@ function Feedback() {
               <option key={index} value={event.companyname}>{event.companyname}</option>
             ))}
           </select>
-          <br/>
-          <br/>
+         
           <button type="button" onClick={handlePostFeedback}>Post Feedback</button>
         </div>
         <div className='upcomingevents'>
-  
-          {/* Display other events */}
-          <h2>Feedback Data</h2>
           {feedbackData.map((feedback, index) => (
-            <div key={index} className='events_'>
+            <div key={index} className='events_ font-semibold'>
               <p>Company Name: {feedback.companyname}</p>
               <Link to={`/staff/view/${feedback.companyname}`}><button>View</button></Link>
-              <button onClick={() => handleDeleteFeedback(feedback.companyname)}>Delete</button>
+              <button className='mx-4' onClick={() => handleDeleteFeedback(feedback.companyname)}>Delete</button>
             </div>
           ))}
         </div>
