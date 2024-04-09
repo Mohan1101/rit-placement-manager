@@ -11,6 +11,7 @@ function students() {
           <Link to="/staff/eligiblestudents"><button>Eligible Students</button></Link>
           <Link to="/staff/higherstudies"><button>Higher Studies</button></Link>
           <Link to="/staff/addstudent"><button>Add Student</button></Link>
+         
         </div>
     </div>
   )

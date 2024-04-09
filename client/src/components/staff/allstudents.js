@@ -86,14 +86,28 @@ const AllStudents = () => {
                   </a>
                 </td>
                 <td>
-                  <a href={student.offerletter} target='_blank' rel='noreferrer'>
-                    View
-                  </a>
+                {student.offerLetter && student.offerLetter.length > 0 ? (
+                    student.offerLetter.map((offer, index) => (
+                      <span key={index}>
+                        <a href={offer} target="_blank" rel="noreferrer">View</a>
+                        {index < student.offerLetter.length - 1 && ', '}
+                      </span>
+                    ))
+                  ) : (
+                    'N/A'
+                  )}
+        
                 </td>
                 <td>
-                  <Link to={`/staff/students/${student.rollnumber}`} className='text-blue-600 hover:underline'>
-                    View
-                  </Link>
+                <button onClick={async () => {
+                    try {
+                      await axios.delete(`https://rit-placement-manager.vercel.app/students/del/${student.rollnumber}`);
+                      alert(`Successfully deleted ${student.name}`);
+                      window.location.reload();
+                    } catch (error) {
+                      console.error('Error deleting student:', error);
+                    }
+                  }}>Delete</button>
                 </td>
               </tr>
             ))}

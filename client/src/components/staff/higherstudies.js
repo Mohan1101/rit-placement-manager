@@ -3,6 +3,7 @@ import Navbar from './navbar';
 import axios from 'axios';
 import Studentsnav from './studentsnav';
 import { firebaseApp } from '../../firebase';
+
 const Higherstudies = () => {
   const [higherStudiesStudents, setHigherStudiesStudents] = useState([]);
 
@@ -13,14 +14,12 @@ const Higherstudies = () => {
         const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const students = response.data;
 
-        // get students with higherstudies field equal to 'Yes'
+        // Filter students with higherstudies field equal to 'Yes'
         const higherStudiesStudents = students.filter(
           (student) => student.higherstudies === 'Yes'
         );
-        
-        setHigherStudiesStudents(higherStudiesStudents);
 
-     
+        setHigherStudiesStudents(higherStudiesStudents);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -33,9 +32,10 @@ const Higherstudies = () => {
   return (
     <div>
       <h1></h1>
-      <Navbar/>
+      <Navbar />
       <div className='mt-16 px-2'>
-        <Studentsnav/>
+        <Studentsnav />
+        <p className="font-semibold text-lg text-center">Total Entries: {higherStudiesStudents.length}</p>
         <table className='-mt-1'>
           <thead>
             <tr>

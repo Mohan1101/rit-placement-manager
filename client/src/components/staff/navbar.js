@@ -12,7 +12,7 @@ function Dashboard() {
 
     return (
         <div className='relative'>
-            <div className='fixed top-0 w-full bg-nav flex items-center justify-between px-4 z-10'>
+            <div className='fixed top-0 w-full bg-nav flex items-center justify-between px-4 z-50'>
                 <div className='w-32 py-1 h-16'>
                     <img src="https://firebasestorage.googleapis.com/v0/b/rit-placement.appspot.com/o/assests%2Fritlogo2.png?alt=media&token=096cd96c-47c4-40de-b2d3-baf87b3e9d60" alt="RIT" className='w-full h-full' />
                 </div>

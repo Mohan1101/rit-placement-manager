@@ -73,7 +73,7 @@ function Feedback() {
   return (
     <div>
       <Navbar />
-      <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4'>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
         Feedback
       </h2>
       <div className='mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>

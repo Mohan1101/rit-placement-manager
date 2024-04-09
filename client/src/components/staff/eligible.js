@@ -14,11 +14,10 @@ const Eligible = () => {
       try {
         const response = await axios.get('https://rit-placement-manager.vercel.app/students');
         const students = response.data;
-          // Convert arrearCount and cgpa to numbers
-          students.forEach(student => {
-            student.arrearCount = parseInt(student.arrearCount);
-            student.cgpa = parseFloat(student.cgpa);
-
+        // Convert arrearCount and cgpa to numbers
+        students.forEach(student => {
+          student.arrearCount = parseInt(student.arrearCount);
+          student.cgpa = parseFloat(student.cgpa);
         });
 
         // Filter students based on the condition
@@ -46,7 +45,7 @@ const Eligible = () => {
 
   return (
     <div>
-      <h1></h1>
+  
       <Navbar />
       <div className='mt-16 px-2'>
         <Studentsnav />
@@ -54,8 +53,10 @@ const Eligible = () => {
        <div className='flex items-center gap-4 justify-center'>
        <div className='font-bold -mt-4'>Filter by CGPA: </div>
       
-      <input type='number'  className={'inputBox'}  step='0.01' max='10' value={cgpaFilter} onChange={handleCgpaChange} />
+      <input type='number'  className={'inputBox'}  placeholder='Enter the CPGA' step='0.01' max='10' value={cgpaFilter} onChange={handleCgpaChange} />
+      <p className="text-lg font-semibold -mt-4 ">Total Entries: {eligibleStudents.length}</p>
       </div>
+
         <table className='-mt-1'>
           <thead>
             <tr>

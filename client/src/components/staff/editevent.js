@@ -56,7 +56,7 @@ function EditEvent() {
     return (
         <section>
             <Navbar />
-            <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4'>
+            <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
                 Edit Placement Drive
             </h2>
             <div className='flex flex-col mt-2 rounded-lg w-5/6 py-6 mx-40 bg-sidenav items-center justify-center gap-2 pb-20'>
@@ -91,7 +91,7 @@ function EditEvent() {
                         <input type='text' className= "inputBox" id='category' name='category' placeholder='Superdream, Dream, Noraml' onChange={handleChange} value={formData.category} />
                     </div>
                     </div>
-                    <input  className="bg-nav mt-6 text-white px-5 py-2.5 rounded-lg"  type='submit' value="Update Event" />
+                    <input  className="cursor-pointer bg-nav mt-6 text-white px-5 py-2.5 rounded-lg"  type='submit' value="Update Event" />
                 </form>
             </div>
         </section>

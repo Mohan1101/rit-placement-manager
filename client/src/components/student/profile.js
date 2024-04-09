@@ -344,7 +344,7 @@ function Profile() {
                 <div className='w-1/3'>
                 {
                     students.map((student, index) => (
-                        <img src={student.photo} alt='student photo' className='rounded-full w-48 h-48  bg-center' />
+                        <img src={student.photo} alt='student photo' className='rounded-full w-52 h-52  bg-center' />
                     ))
                 }
             </div>

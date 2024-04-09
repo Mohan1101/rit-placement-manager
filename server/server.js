@@ -2,6 +2,9 @@ require('dotenv').config(); // Load environment variables from .env file
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer');
+const xlsx = require('xlsx');
+const csvParser = require('csv-parser');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -12,6 +15,12 @@ const port = 3001;
 // Parse incoming JSON data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Multer configuration
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// CORS configuration
 
 const allowedOrigins = ['http://localhost:3000', 'https://rit-placement.web.app'];
 app.use(cors({
@@ -220,6 +229,112 @@ app.post('/students/add', async (req, res) => {
         res.status(500).send('Error adding student: ' + error.message);
     }
 });
+
+
+// // Endpoint for CSV file upload
+// app.post('/students/upload-csv', upload.single('file'), async (req, res) => {
+//     try {
+//       // Check if file is present
+//       if (!req.file) {
+//         return res.status(400).send('No file uploaded.');
+//       }
+  
+//       // Read CSV file
+//       const csvData = req.file.buffer.toString('utf8');
+  
+//       // Parse CSV data
+//       const students = [];
+//       csvParser()
+//         .on('data', (row) => {
+//           // Process each row of CSV data and create a student object
+//           const student = new Student({
+//             name: row.name,
+//             rollnumber: row.rollnumber,
+//             email: row.email,
+//             fathername: row.fathername,
+//             dob: row.dob,
+//             batch: row.batch,
+//             branch: row.branch,
+//             cgpa: row.cgpa,
+//             phone: row.phone,
+//             degree: row.degree,
+//             placed: row.placed,
+//             registered: [],
+//             resume: '',
+//             higherstudies: row.higherstudies,
+//             arrearCount: row.arrearCount,
+//             marksheet: '',
+//             marksheet2: '',
+//             photo: '',
+//             offerLetter: [],
+//           });
+//           students.push(student);
+//         })
+//         .on('end', async () => {
+//           // Save students to the database
+//           await Student.insertMany(students);
+//           res.status(200).send('Students added successfully!');
+//         })
+//         .on('error', (error) => {
+//           console.error('Error parsing CSV:', error);
+//           res.status(500).send('Error parsing CSV: ' + error.message);
+//         })
+//         .write(csvData);
+//     } catch (error) {
+//       console.error('Error uploading CSV:', error);
+//       res.status(500).send('Error uploading CSV: ' + error.message);
+//     }
+//   });
+
+// Assuming `Student` model is properly defined
+
+app.post('/students/upload-csv', upload.single('file'), async (req, res) => {
+    try {
+      // Check if file is present
+      if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+      }
+  
+      // Read CSV file
+      const workbook = xlsx.read(req.file.buffer, { type: 'buffer' });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const data = xlsx.utils.sheet_to_json(sheet);
+  
+      // Process each row of data and create student objects
+      const students = data.map(row => ({
+        name: row.name,
+        rollnumber: row.rollnumber,
+        email: row.email,
+        fathername: row.fathername,
+        dob: row.dob,
+        batch: row.batch,
+        branch: row.branch,
+        cgpa: row.cgpa,
+        phone: row.phone,
+        degree: row.degree,
+        placed: row.placed,
+        registered: [],
+        resume: '',
+        higherstudies: row.higherstudies,
+        arrearCount: row.arrearCount,
+        marksheet: '',
+        marksheet2: '',
+        photo: '',
+        offerLetter: [],
+      }));
+  
+      // Save students to the database
+      await Student.insertMany(students);
+  
+      res.status(200).send('Students added successfully!');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      res.status(500).send('Error uploading file: ' + error.message);
+    }
+  });
+  
+  
 
 // Route to update student with resume link
 app.patch('/students/:id', async (req, res) => {

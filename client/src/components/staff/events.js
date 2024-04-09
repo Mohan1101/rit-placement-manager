@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './navbar';
 import { Link } from 'react-router-dom';
-import axios from 'axios'; // Import Axios for making HTTP requests
-import moment from 'moment'; // Import moment library for date formatting
+import axios from 'axios';
+import moment from 'moment';
 
 function Events() {
   const [events, setEvents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchEvents();
@@ -24,32 +25,47 @@ function Events() {
     try {
       await axios.delete(`https://rit-placement-manager.vercel.app/events/${companyName}`);
       alert(`Successfully deleted ${companyName}`);
-      // Fetch updated events data after deleting
       fetchEvents();
     } catch (error) {
       console.error('Error deleting event:', error);
     }
   };
 
+  // Filter events based on search term
+  const filteredEvents = events.filter(event =>
+    event.companyname.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <Navbar />
-      <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4'>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
         Upcoming Events
       </h2>
       <div className='mx-32 my-6 p-6 bg-sidenav rounded-lg w-5/6'>
+     <div className="flex justify-center gap-4 items-center">
+     <input
+          type="text"
+          placeholder="Search by company name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border rounded-lg px-24 py-4 mt-4 mb-4"
+        />
         <Link to="/staff/addevent">
           <button>Add Event</button>
         </Link>
+        </div>
+        {/* Search bar */}
+        
         <div>
-          {events.map((event, index) => (
+          {filteredEvents.map((event, index) => (
             <div key={index} className='events_ font-semibold'>
               <p>Company Name: {event.companyname}</p>
               <p>Role: {event.role}, {event.category}</p>
               <p>Degree : {event.degree}</p>
               <p>Batch : {event.batch}</p>
               <p>Branch : {event.branch}</p>
-              <p>Drive Date: {moment(event.date).format('DD-MM-YYYY')}</p> {/* Format the date using moment */}
+              <p>Drive Date: {moment(event.date).format('DD-MM-YYYY')}</p>
               <p>CTC: {event.ctc} LPA</p>
               <div>
                 <Link to={`/staff/editevent/${event._id}`}>

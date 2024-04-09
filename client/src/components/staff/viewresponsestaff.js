@@ -31,7 +31,7 @@ function ViewResponses() {
   return (
     <div>
       <Navbar />
-      <h2 className='w-full text-center text-2xl font-bold bg-sidenav py-4'>
+      <h2 className='mt-16 w-full text-center text-2xl font-bold bg-sidenav py-4'>
         Responses for {companyname}
       </h2>
   

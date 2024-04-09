@@ -27,7 +27,7 @@ function SignIn() {
 
     const handleLogin = async () => {
         try {
-            const formattedDob = moment(dob, 'DD-MM-YYYY').format('YYYY-MM-DD');
+     
 
             // Check if the rollnumber exists in the "Student" collection
             const studentData = await getStudentData(rollnumber);
@@ -38,7 +38,7 @@ function SignIn() {
             }
 
             // If rollnumber exists, check if the provided dob matches
-            if (studentData.dob === formattedDob) {
+            if (studentData.dob === dob) {
                 console.log('Login successful!');
                 setErrorMessage('');
 

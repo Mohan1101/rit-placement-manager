@@ -12,6 +12,7 @@ import StudentSignin from './components/student/signin';
 
 import Students from './components/staff/students';
 import AddStudent from './components/staff/addstudent';
+import CsvUpload from './components/staff/csvupload';
 import Events from './components/staff/events';
 import Addevent from './components/staff/addevent';
 import EditEvent from './components/staff/editevent';
@@ -49,6 +50,7 @@ function App() {
           <Route path="/staff" element={<Students />}></Route>
           <Route path="/staff/students" element={<Students />}></Route>
           <Route path="/staff/addstudent" element={<AddStudent />}></Route>
+          <Route path="/staff/csvupload" element={<CsvUpload />}></Route>
           <Route path="/staff/events" element={<Events />}></Route>
           <Route path="/staff/addevent" element={<Addevent />}></Route>
           <Route path="/staff/editevent/:eventId" element={<EditEvent />}></Route>

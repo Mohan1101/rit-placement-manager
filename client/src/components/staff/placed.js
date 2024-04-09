@@ -29,7 +29,7 @@ const Placed = () => {
       <Navbar />
       <div className='mt-16 px-2'>
         <Studentsnav />
-        
+        <p className="text-lg text-center font-semibold">Total Entries: {placedStudents.length}</p>
         <table className='-mt-1'>
           <thead>
             <tr>
@@ -63,7 +63,6 @@ const Placed = () => {
                     'N/A'
                   )}
                 </td>
-
                 <td>{student.phone}</td>
                 <td>{student.email}</td>
               </tr>

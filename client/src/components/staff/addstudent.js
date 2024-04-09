@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { firebaseApp } from '../../firebase';
 import axios from 'axios';
 import Navbar from './navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
+import moment from 'moment';
 
 function AddStudent() {
     const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ function AddStudent() {
                     rollnumber: formData.rollnumber,
                     email: formData.email,
                     fathername: formData.fathername,
-                    dob: formData.dob,
+                    dob: moment(formData.dob).format('DD-MM-YYYY'),
                     batch: formData.batch,
                     branch: formData.branch,
                     cgpa: formData.cgpa,
@@ -72,14 +72,16 @@ function AddStudent() {
     };
 
     return (
-        <section>
+        <section >
             <Navbar/>
             <h2 className=' mt-16  w-full text-center text-2xl font-bold bg-sidenav py-2 '>
                     Add Student</h2>
+                    
+                   
             <div className='flex flex-col items-center justify-center gap-2 pb-20'>
                 
                 <form onSubmit={handleSubmit} >
-                    <div className='flex gap-6 '>
+                    <div className='flex  gap-12'>
                     <div className='flex flex-col gap-4 justify-center '>
                         <label className='font-semibold' htmlFor="name">Student Name : </label>
                         <input type='text' className= "inputBox" id='name' name='name' placeholder='Name' onChange={handleChange} value={formData.name} required />
@@ -131,11 +133,22 @@ function AddStudent() {
                         </select>
                     </div>
 
+                    <h2 className=' mt-4 text-2xl font-bold py-2 '>
+                        OR
+                    </h2>
+        
+
+
+                    <div className='pl-28'>
+                    <Link  to="/staff/csvupload"><button>Upload CSV</button></Link>
+                    </div>
+
                     </div>
                   
                 
                     <input className="bg-nav mt-6 text-white px-5 py-2.5 rounded-lg" type='submit' value="Submit" />
                 </form>
+               
             </div>
         </section>
     )

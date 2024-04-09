@@ -30,11 +30,10 @@ const Registered = () => {
   const fetchCompanyNames = async () => {
     try {
       // Fetch unique company names from the event in mongodb
-      const response = await axios .get('https://rit-placement-manager.vercel.app/events');
+      const response = await axios.get('https://rit-placement-manager.vercel.app/events');
       const eventsData = response.data;
       const uniqueCompanyNames = [...new Set(eventsData.map(event => event.companyname))];
       setCompanyNames(uniqueCompanyNames);
-     
     } catch (error) {
       console.error('Error fetching company names:', error);
     }
@@ -61,14 +60,16 @@ const Registered = () => {
       <div className='mt-16 px-2'>
         <Studentsnav />
         <div className='flex gap-4 items-center justify-center'>
-        <div className='font-bold -mt-3 '>Filter by Company : </div>
-        <select  className={'inputBox'} value={selectedCompany} onChange={handleCompanyChange}>
-          <option value="" disabled>Select a company</option>
-          {companyNames.map((company, index) => (
-            <option key={index} value={company}>{company}</option>
-          ))}
-        </select>
+          <div className='font-bold -mt-3 '>Filter by Company : </div>
+          <select  className={'inputBox'} value={selectedCompany} onChange={handleCompanyChange}>
+            <option value="" disabled>Select a company</option>
+            {companyNames.map((company, index) => (
+              <option key={index} value={company}>{company}</option>
+            ))}
+          </select>
+          <p className="font-semibold text-lg -mt-4 ">Total Entries: {filteredStudents.length}</p>
         </div>
+       
         <table className='-mt-2'>
           <thead>
             <tr>
